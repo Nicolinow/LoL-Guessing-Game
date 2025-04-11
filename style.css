@@ -1,0 +1,620 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Forum&display=swap");
+
+:root {
+	--primary-color: hsl(48, 100%, 50%);
+	--background-color: hsl(210, 20%, 9%);
+	--surface-color: hsl(240, 30%, 15%);
+	--text-color: hsl(45, 50%, 95%);
+	--error-color: hsl(354, 70%, 54%);
+	--success-color: hsl(134, 61%, 41%);
+	--gold-color: hsl(41, 54%, 51%);
+	--dark-red: hsl(0, 60%, 40%);
+	--darker-red: hsl(0, 67%, 30%);
+	--dark-blue: hsla(259, 49%, 13%, 0.5);
+	--shadow-color: hsla(0, 0%, 0%, 0.8);
+	--gold-shadow: hsla(41, 54%, 51%, 0.8);
+	--gold-transparent: hsla(41, 54%, 51%, 0.8);
+	--light-success: hsla(134, 61%, 41%, 0.1);
+	--success-border: hsla(134, 61%, 41%, 0.4);
+	--success-text: hsl(134, 48%, 49%);
+	--success-gradient-1: hsla(134, 61%, 41%, 0.6);
+	--success-gradient-2: hsla(134, 61%, 41%, 0.8);
+	--success-active-1: hsla(134, 61%, 41%, 0.7);
+	--success-active-2: hsla(134, 61%, 41%, 0.9);
+	--success-shadow: hsla(134, 61%, 41%, 0.3);
+	--gold-gradient-1: hsla(46, 57%, 52%, 0.7);
+	--gold-gradient-2: hsla(46, 57%, 52%, 0.9);
+	--gold-shadow-light: hsla(46, 57%, 52%, 0.5);
+	--wrong-attempts-text: hsla(354, 72%, 48%, 0.15);
+	--wrong-attempts-border: hsla(354, 72%, 48%, 0.4);
+	--wrong-attempts-bg: hsla(354, 70%, 54%, 0.3);
+	--wrong-text: hsl(353, 100%, 72%);
+	--success-text-dark: hsl(134, 72%, 38%);
+	--semi-transparent: hsla(0, 0%, 100%, 0.4);
+	--modal-bg: hsla(240, 43%, 7%, 0.9);
+	--black-shadow: hsla(0, 0%, 0%, 1);
+	--black-shadow-light: hsla(0, 0%, 0%, 0.2);
+	--autocomplete-bg: hsla(240, 30%, 15%, 0.95);
+	--gold-border: hsla(48, 100%, 50%, 0.3);
+	--gold-border-focus: hsla(48, 100%, 50%, 1);
+	--gold-hover: hsla(48, 100%, 50%, 0.2);
+	--gold-outline: hsla(48, 100%, 50%, 0.1);
+	--gold-box-shadow: hsla(48, 100%, 50%, 0.2);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	overflow: hidden;
+}
+
+#bg-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0.5;
+	filter: blur(5px);
+}
+
+.container {
+	width: 100%;
+	max-width: 600px;
+	position: relative;
+	z-index: 1;
+}
+
+h1 {
+	font-family: "Cinzel", sans-serif;
+	text-align: center;
+	font-size: 3rem;
+	margin-bottom: 30px;
+	color: var(--gold-color);
+	text-shadow: 1px 1px 5px var(--gold-shadow);
+}
+
+.game-box {
+	position: relative;
+	background-color: var(--dark-blue);
+	backdrop-filter: blur(10px);
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px 1px var(--shadow-color);
+}
+
+.quote {
+	margin: 20px 0;
+	font-size: 2rem;
+	font-style: italic;
+	text-shadow: 2px 2px 4px var(--black-shadow);
+}
+
+.controls {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+button {
+	font-family: "Cinzel", Courier, monospace;
+	font-weight: bold;
+	padding: 0.8rem 1.5rem;
+	font-size: 1rem;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+button:nth-child(2) {
+	width: 200px;
+	color: var(--text-color);
+	background-color: var(--dark-red);
+
+	&:hover:not(:disabled) {
+		font-weight: lighter;
+		background-color: var(--darker-red);
+		transform: translateY(-2px);
+	}
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+.input-container {
+	position: relative;
+	margin: 1rem 0;
+}
+
+.champion-input {
+	font-family: "Cinzel Decorative";
+	text-transform: lowercase;
+	text-align: center;
+	width: 100%;
+	padding: 0.4rem;
+	font-size: 1rem;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid var(--gold-border);
+	background: transparent;
+	color: var(--text-color);
+	transition: all 0.3s ease;
+}
+
+.champion-input:focus {
+	border: transparent;
+	border-bottom: 1px solid var(--gold-border-focus);
+}
+
+.autocomplete-box {
+	font-family: "Cinzel Decorative";
+	text-transform: lowercase;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: var(--autocomplete-bg);
+	border: 1px solid var(--gold-border);
+	border-radius: 0 0 8px 8px;
+	max-height: 200px;
+	overflow-y: auto;
+	z-index: 1000;
+	opacity: 0;
+	overflow-x: hidden;
+	transform: translateY(-10px);
+	pointer-events: none;
+	transition: all 0.3s ease;
+}
+
+.autocomplete-box::-webkit-scrollbar {
+	width: 4px;
+}
+.autocomplete-box::-webkit-scrollbar-thumb {
+	background: var(--gold-border);
+	border-radius: 10px;
+}
+
+.autocomplete-box::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.autocomplete-box.active {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: all;
+}
+
+.champion-option {
+	position: relative;
+	padding: 0.8rem;
+	width: 100%;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.champion-option::before,
+.champion-option.selected::before {
+	content: "";
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E")
+		no-repeat;
+	background-size: 30px;
+	position: absolute;
+	top: 20%;
+	left: -15px;
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s;
+}
+
+.champion-option:hover::before,
+.champion-option.selected::before {
+	left: -13px;
+}
+
+.champion-option::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 110%;
+	height: 100%;
+	transform: translateX(-20px);
+	transition: all 0.2s;
+}
+
+.champion-option:hover::after,
+.champion-option.selected::after {
+	background: var(--gold-hover);
+}
+
+.champion-option:hover,
+.champion-option.selected {
+	transform: translateX(6px);
+}
+
+.quote-container {
+	font-family: "Forum", sans-serif;
+	text-align: center;
+	text-wrap: pretty;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+.quote-box {
+	position: relative;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.quote-box.slide-out {
+	transform: translateX(100%);
+	opacity: 0;
+}
+
+.quote-box.slide-in {
+	opacity: 0;
+	transform: translateX(-100%);
+	pointer-events: none;
+}
+
+.quote-box.active {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+#skip-btn {
+	color: var(--surface-color);
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	background-color: transparent;
+	z-index: 2;
+	width: 200px;
+}
+
+button:nth-child(1):hover:not(:disabled) {
+	color: var(--text-color) !important;
+	font-weight: lighter;
+
+	& .skip-piece:nth-child(1) {
+		transform: translate(2px, -4px) skew(-20deg);
+	}
+	& .skip-piece:nth-child(2) {
+		transform: translate(-1px, 4px) skew(-20deg);
+	}
+}
+
+.skip-pieces {
+	position: absolute;
+	left: 50.5%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 110%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	pointer-events: none;
+	gap: 5px;
+	z-index: -1;
+}
+
+.skip-piece {
+	transform: skew(-20deg);
+	width: 100%;
+	min-width: 100px;
+	height: 100%;
+	transition: all 0.3s ease;
+	background-color: var(--gold-transparent);
+}
+
+.skip-piece:nth-child(1)::after {
+	text-align: end;
+	content: "Pular";
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+}
+
+.skip-piece:nth-child(2)::after {
+	content: "Frase";
+	position: absolute;
+	top: 50%;
+	left: 42%;
+	transform: translate(-50%, -50%);
+}
+
+.skip-piece.used {
+	opacity: 0.2;
+}
+
+.wrong-attempts {
+	width: 100%;
+	gap: 4px;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.wrong-attempts::before {
+	content: "Tentativas";
+	font-family: "Courier New", Courier, monospace;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--wrong-attempts-text);
+	font-size: 4rem;
+	font-weight: bold;
+	margin-bottom: 0.8rem;
+}
+
+.attempt-segments {
+	display: flex;
+	width: 95%;
+	gap: 2px;
+}
+
+.attempt-segment {
+	font-family: "Cinzel Decorative", sans-serif;
+	font-weight: bold;
+	transform: skew(-20deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	border: 1px solid var(--wrong-attempts-border);
+	min-height: 60px;
+	font-size: 1rem;
+	transition: all 0.3s;
+}
+
+.attempt-segment.used {
+	background: var(--wrong-attempts-bg);
+}
+
+.attempt-segment::before {
+	color: var(--wrong-text);
+	content: attr(data-champion);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) skew(20deg);
+	opacity: 0;
+	width: 100%;
+	text-align: center;
+	transition: all 0.3s;
+}
+
+.attempt-segment.used::before {
+	opacity: 1;
+}
+
+.game-over {
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--modal-bg);
+	backdrop-filter: blur(8px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+	display: flex;
+	transition: all 0.5s ease;
+}
+
+.game-over.active {
+	pointer-events: all;
+}
+
+.game-over-content {
+	background: var(--surface-color);
+	text-align: center;
+	padding: 2rem;
+	border-radius: 12px;
+	width: 90%;
+	max-width: 600px;
+	transform: translateY(20px);
+	opacity: 0;
+	transition: all 0.5s ease 0.2s;
+}
+
+.game-over-content h2 {
+	font-family: "Cinzel", sans-serif;
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--gold-color);
+	text-shadow: 1px 1px 5px var(--gold-shadow);
+}
+
+.game-over.active .game-over-content {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+	margin: 1.5rem 0;
+}
+
+.stat-item {
+	outline: 1px solid var(--gold-outline);
+	box-shadow: inset 0 0 10px var(--gold-box-shadow);
+	padding: 1rem;
+	border-radius: 8px;
+	text-align: center;
+}
+
+.stat-label {
+	font-family: "Cinzel", sans-serif;
+	color: var(--primary-color);
+	font-size: 0.9rem;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.stat-value {
+	font-family: "Forum", sans-serif;
+	font-size: 1.1rem;
+	color: var(--text-color);
+}
+
+#play-again-btn {
+	width: 100%;
+	font-family: "Cinzel", sans-serif;
+	color: var(--surface-color);
+	background-color: var(--gold-transparent);
+	font-size: 1.2rem;
+	padding: 1rem 2rem;
+	border-radius: 8px;
+	text-decoration: none;
+	text-align: center;
+	margin-top: 1rem;
+	transition: all 0.3s ease;
+}
+
+#play-again-btn:hover {
+	font-weight: lighter;
+	background-color: var(--gold-color);
+}
+
+.quote-info {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1rem;
+	margin-bottom: 10px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.progress-counter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-radius: 8px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	transition: all 0.3s ease;
+	background: var(--light-success);
+	outline: 1px solid var(--success-border);
+	outline-offset: -1px;
+	padding: 0;
+	color: var(--success-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 24px;
+	overflow: hidden;
+
+	> span {
+		font-weight: bold;
+		position: relative;
+		z-index: 2;
+		text-shadow: 0 0 2px var(--black-shadow);
+		padding: 0.1em;
+		border-top-right-radius: 8px;
+		border-bottom-right-radius: 8px;
+	}
+}
+
+.progress-counter:has(.progress-bar.complete) span {
+	color: var(--surface-color);
+	text-shadow: 0 0 2px var(--black-shadow-light);
+}
+
+.progress-bar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(to right, var(--success-gradient-1), var(--success-gradient-2));
+	transition: width 0.5s ease-in-out;
+	z-index: 1;
+	box-shadow: 0 0 10px var(--success-shadow);
+}
+
+.progress-bar.active {
+	background: linear-gradient(to right, var(--success-active-1), var(--success-active-2));
+}
+
+.progress-bar.complete {
+	background: linear-gradient(to right, var(--gold-gradient-1), var(--gold-gradient-2));
+	box-shadow: 0 0 15px var(--gold-shadow-light);
+}
+
+.game-over-quote {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-family: "Cinzel", sans-serif;
+	text-align: center;
+	font-size: 1.1rem;
+
+	span:nth-child(2) {
+		font-size: 0.8rem;
+	}
+}
+
+#answer {
+	display: block;
+	transition: all 0.3s;
+	border-radius: 4px;
+	padding: 0 5px;
+	user-select: none;
+	cursor: pointer;
+	font-size: 1.2em;
+	filter: blur(0);
+	color: var(--success-text-dark);
+	outline: 1px solid var(--gold-border);
+}
+
+#answer.hidden-answer {
+	filter: blur(5px);
+	color: var(--semi-transparent);
+}
+
+#answer.hidden-answer:hover {
+	color: var(--text-color);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

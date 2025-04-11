@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>LoL Quote Guesser</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="responsivestyle.css" />
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+	</head>
+	<body>
+		<canvas id="bg-canvas"></canvas>
+
+		<div class="container">
+			<h1>Quem mandou essa?</h1>
+
+			<div class="game-box">
+				<div class="progress-counter">
+					<span id="progress-counter"></span>
+				</div>
+
+				<div class="quote-container">
+					<div id="quote-box" class="quote-box">
+						<p id="quote" class="quote">Carregando frase...</p>
+						<div class="wrong-attempts" id="wrong-attempts">
+							<ul id="wrong-list"></ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-container">
+					<input
+						type="text"
+						id="champion-input"
+						class="champion-input"
+						placeholder="Esse aí é o..."
+						autocomplete="off"
+					/>
+					<div id="autocomplete-box" class="autocomplete-box"></div>
+				</div>
+
+				<div class="controls">
+					<button id="skip-btn"></button>
+					<button id="reset-btn">Reiniciar Jogo</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="game-over" class="game-over">
+			<div class="game-over-content">
+				<h2>Fim de Jogo!</h2>
+				<p class="game-over-quote">A resposta era <span id="answer"></span></p>
+				<div class="stats-grid">
+					<div class="stat-item">
+						<span class="stat-label">Campeões Acertados</span>
+						<span class="stat-value" id="total-phrases">0</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-label">Tempo da Partida</span>
+						<span class="stat-value" id="total-time">0:00</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-label">Campeão Mais Rápido</span>
+						<span class="stat-value" id="fastest-phrase">-</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-label">Campeão Mais Demorado</span>
+						<span class="stat-value" id="slowest-phrase">-</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-label">Campeão Mais Difícil</span>
+						<span class="stat-value" id="hardest-phrase">-</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-label">Taxa de Acerto</span>
+						<span class="stat-value" id="accuracy">0%</span>
+					</div>
+				</div>
+				<button id="play-again-btn">Agora vai</button>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+		<script src="bgscript.js"></script>
+	</body>
+</html>
