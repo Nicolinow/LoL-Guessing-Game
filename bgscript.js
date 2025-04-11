@@ -1,3 +1,19 @@
+/**
+ * Copyright 2025 Nicolas Lima
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 (function () {
 	const canvas = document.getElementById("bg-canvas");
 	const ctx = canvas.getContext("2d");
@@ -14,7 +30,7 @@
 		const isMobile = window.innerWidth < 768;
 
 		if (isMobile) {
-			tileWidth = 240; 
+			tileWidth = 240;
 			tileHeight = 135;
 		} else {
 			tileWidth = 480;
@@ -22,7 +38,7 @@
 		}
 	}
 
-	const rotationAngle = -20 * (Math.PI / 180); 
+	const rotationAngle = -20 * (Math.PI / 180);
 	const speedX = 0.5;
 	const speedY = 0;
 
@@ -416,7 +432,6 @@
 		return availableChampionList.shift();
 	}
 
-
 	function updateAvailableChampions() {
 		const usedChampions = new Set();
 		tiles.forEach((tile) => {
@@ -454,7 +469,6 @@
 		const maxY = Math.max(...tiles.map((t) => t.y));
 		const minX = Math.min(...tiles.map((t) => t.x));
 		const minY = Math.min(...tiles.map((t) => t.y));
-
 
 		ctx.restore();
 

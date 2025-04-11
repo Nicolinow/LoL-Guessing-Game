@@ -1,3 +1,19 @@
+/**
+ * Copyright 2025 Nicolas Lima
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Forum&display=swap");
 
 :root {
@@ -606,6 +622,24 @@ button:nth-child(1):hover:not(:disabled) {
 
 #answer.hidden-answer:hover {
 	color: var(--text-color);
+}
+
+.footer {
+	position: absolute;
+	width: 95%;
+	bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-wrap: pretty;
+	margin-top: 20px;
+	font-family: "Cinzel", sans-serif;
+	font-size: 0.8rem;
+	color: var(--text-color);
+	opacity: 0.5;
+	text-shadow: 1px 1px 5px var(--gold-shadow);
 }
 
 @keyframes fadeIn {

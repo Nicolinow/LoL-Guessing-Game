@@ -1,7 +1,21 @@
-// Módulo de descriptografia (será ofuscado)
+/**
+ * Copyright 2025 Nicolas Lima
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 const DecryptModule = (function () {
 	function decryptBase64(base64Data) {
-
 		const cleanedBase64 = base64Data.replace(/[\s\r\n]+/g, "");
 		const binaryString = atob(cleanedBase64);
 		const bytes = new Uint8Array(binaryString.length);
@@ -63,7 +77,7 @@ const GameModule = (function () {
 			quoteElement.textContent = "Erro ao carregar dados!";
 			return;
 		}
-		
+
 		championsData = decodedData.champions || [];
 		availableChampions = [...championsData];
 
@@ -437,7 +451,7 @@ const GameModule = (function () {
 
 		setTimeout(() => {
 			gameOverScreen.style.display = "none";
-		}, 300); 
+		}, 300);
 	}
 
 	function handleSkip() {
