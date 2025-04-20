@@ -54,7 +54,18 @@
 		},
 	};
 
+	let lastWindowWidth = window.innerWidth;
+	let lastWindowHeight = window.innerHeight;
+
 	function resizeCanvas() {
+		const currentWidth = window.innerWidth;
+		const currentHeight = window.innerHeight;
+		if (currentWidth === lastWindowWidth && currentHeight === lastWindowHeight) {
+			return;
+		}
+		lastWindowWidth = currentWidth;
+		lastWindowHeight = currentHeight;
+
 		width = canvas.width = window.innerWidth;
 		height = canvas.height = window.innerHeight;
 
@@ -350,6 +361,9 @@
 	function checkAllProcessed() {
 		if (loaded + failed === champions.length) {
 			availableChampionList = shuffleArray(Object.keys(images));
+			lastWindowWidth = 0;
+			lastWindowHeight = 0;
+			resizeCanvas();
 			createTiles();
 			animate();
 		}
