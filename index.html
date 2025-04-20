@@ -20,9 +20,11 @@ limitations under the License.
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>LoL Quote Guesser</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="responsivestyle.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="stylesheet" href="styles/responsivestyle.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	</head>
 	<body>
 		<canvas id="bg-canvas"></canvas>
@@ -58,6 +60,177 @@ limitations under the License.
 				<div class="controls">
 					<button id="skip-btn"></button>
 					<button id="reset-btn">Reiniciar Jogo</button>
+				</div>
+			</div>
+		</div>
+
+		<button id="achievements-btn" class="achievements-btn">🏆</button>
+		<button id="credits-btn" class="credits-btn">❤️</button>
+
+		<div id="achievements-modal" class="achievements-modal">
+			<div class="achievements-content">
+				<h2>Hmm... Desafios?</h2>
+
+				<div class="achievements-tabs">
+					<button id="achievements-tab-btn" class="tab active">Conquistas</button>
+					<button id="champions-tab-btn" class="tab">Campeões Desbloqueados</button>
+				</div>
+
+				<div id="achievements-container">
+					<div id="achievements-grid" class="achievements-grid"></div>
+				</div>
+
+				<div id="champions-container">
+					<div id="champions-grid" class="champions-grid"></div>
+				</div>
+
+				<div class="modal-buttons">
+					<button class="close-modal">Já vi tudo por aqui</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="credits-modal" class="credits-modal">
+			<div class="credits-content">
+				<h2>Agradecimentos</h2>
+				<div class="credits-container">
+					<div class="credits">
+						<a href="https://www.flaticon.com/free-icons/aim" title="aim icons" class="credit-item">
+							<img src="assets/threeInRow.png" alt="Aim icon" class="credit-icon" />
+							<span>Aim icons created by Freepik - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/mission" title="mission icons" class="credit-item">
+							<img src="assets/firstTry.png" alt="Mission icon" class="credit-icon" />
+							<span>Mission icons created by Ndut_Design - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/crystal-ball"
+							title="crystal ball icons"
+							class="credit-item"
+						>
+							<img src="assets/almostOracle.png" alt="Crystal ball icon" class="credit-icon" />
+							<span>Crystal ball icons created by Superarticons - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/memory" title="memory icons" class="credit-item">
+							<img src="assets/mainMemory.png" alt="Memory icon" class="credit-icon" />
+							<span>Memory icons created by Smashicons - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/trophy" title="trophy icons" class="credit-item">
+							<img src="assets/congratsIThink.png" alt="Trophy icon" class="credit-icon" />
+							<span>Trophy icons created by surang - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/third-place"
+							title="third place icons"
+							class="credit-item"
+						>
+							<img src="assets/participationAward.png" alt="Third place icon" class="credit-icon" />
+							<span>Third place icons created by Freepik - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/personal-development"
+							title="personal development icons"
+							class="credit-item"
+						>
+							<img src="assets/goodStart.png" alt="Personal development icon" class="credit-icon" />
+							<span>Personal development icons created by juicy_fish - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/confused"
+							title="confused icons"
+							class="credit-item"
+						>
+							<img src="assets/notThisOne.png" alt="Confused icon" class="credit-icon" />
+							<span>Confused icons created by Freepik - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/test" title="test icons" class="credit-item">
+							<img src="assets/justTesting.png" alt="Test icon" class="credit-icon" />
+							<span>Test icons created by Freepik - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/enter" title="enter icons" class="credit-item">
+							<img src="assets/keyboardStuck.png" alt="Enter icon" class="credit-icon" />
+							<span>Enter icons created by Freepik - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/betrayal"
+							title="betrayal icons"
+							class="credit-item"
+						>
+							<img src="assets/fakeMain.png" alt="Betrayal icon" class="credit-icon" />
+							<span>Betrayal icons created by Freepik - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/happiness"
+							title="happiness icons"
+							class="credit-item"
+						>
+							<img src="assets/havingFun.png" alt="Happiness icon" class="credit-icon" />
+							<span>Happiness icons created by Kalashnyk - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/addiction"
+							title="addiction icons"
+							class="credit-item"
+						>
+							<img src="assets/addictedNow.png" alt="Addiction icon" class="credit-icon" />
+							<span>Addiction icons created by Smashicons - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/championship"
+							title="championship icons"
+							class="credit-item"
+						>
+							<img src="assets/rankedSunday.png" alt="Championship icon" class="credit-icon" />
+							<span>Championship icons created by denimao - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/deaf" title="deaf icons" class="credit-item">
+							<img src="assets/holdTheEmotion.png" alt="Deaf icon" class="credit-icon" />
+							<span>Deaf icons created by Freepik - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/long-time"
+							title="long time icons"
+							class="credit-item"
+						>
+							<img src="assets/worseThanZilean.png" alt="Long time icon" class="credit-icon" />
+							<span>Long time icons created by ultimatearm - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/schedule"
+							title="schedule icons"
+							class="credit-item"
+						>
+							<img src="assets/mainGame.png" alt="Schedule icon" class="credit-icon" />
+							<span>Schedule icons created by Iconic Artisan - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/restriction"
+							title="restriction icons"
+							class="credit-item"
+						>
+							<img src="assets/cantStop.png" alt="Restriction icon" class="credit-icon" />
+							<span>Restriction icons created by Freepik - Flaticon</span>
+						</a>
+						<a
+							href="https://www.flaticon.com/free-icons/encyclopedia"
+							title="encyclopedia icons"
+							class="credit-item"
+						>
+							<img src="assets/runeterraEncyclopedia.png" alt="Encyclopedia icon" class="credit-icon" />
+							<span>Encyclopedia icons created by Freepik - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/sleep" title="sleep icons" class="credit-item">
+							<img src="assets/sleepy.png" alt="Sleep icon" class="credit-icon" />
+							<span>Sleep icons created by Good Ware - Flaticon</span>
+						</a>
+						<a href="https://www.flaticon.com/free-icons/problem" title="problem icons" class="credit-item">
+							<img src="assets/niceTry.png" alt="Problem icon" class="credit-icon" />
+							<span>Problem icons created by monkik - Flaticon</span>
+						</a>
+					</div>
+				</div>
+				<div class="modal-buttons">
+					<button class="close-modal">Fechar</button>
 				</div>
 			</div>
 		</div>
@@ -101,7 +274,30 @@ limitations under the License.
 			This project is not endorsed by or affiliated with Riot Games in any way.
 		</div>
 
-		<script src="script.js"></script>
-		<script src="bgscript.js"></script>
+		<script src="scripts/achievementsData.js"></script>
+		<script>
+			function initializeApp() {
+				if (window.DecryptModule) {
+					const scripts = ["scripts/bgscript.js", "scripts/achievements.js", "scripts/script.js"];
+					let loaded = 0;
+
+					scripts.forEach((src) => {
+						const script = document.createElement("script");
+						script.src = src;
+						script.onload = () => {
+							loaded++;
+							if (loaded === scripts.length) {
+								window.GameModule && window.GameModule.init();
+							}
+						};
+						document.body.appendChild(script);
+					});
+				} else {
+					setTimeout(initializeApp, 100);
+				}
+			}
+
+			document.addEventListener("DOMContentLoaded", initializeApp);
+		</script>
 	</body>
 </html>

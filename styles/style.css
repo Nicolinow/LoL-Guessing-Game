@@ -26,7 +26,7 @@
 	--gold-color: hsl(41, 54%, 51%);
 	--dark-red: hsl(0, 60%, 40%);
 	--darker-red: hsl(0, 67%, 30%);
-	--dark-blue: hsla(259, 49%, 13%, 0.5);
+	--dark-blue: hsla(259, 49%, 13%, 0.2);
 	--shadow-color: hsla(0, 0%, 0%, 0.8);
 	--gold-shadow: hsla(41, 54%, 51%, 0.8);
 	--gold-transparent: hsla(41, 54%, 51%, 0.8);
@@ -38,7 +38,7 @@
 	--success-active-1: hsla(134, 61%, 41%, 0.7);
 	--success-active-2: hsla(134, 61%, 41%, 0.9);
 	--success-shadow: hsla(134, 61%, 41%, 0.3);
-	--gold-gradient-1: hsla(46, 57%, 52%, 0.7);
+	--gold-gradient-1: hsla(46, 57%, 52%, 0.6);
 	--gold-gradient-2: hsla(46, 57%, 52%, 0.9);
 	--gold-shadow-light: hsla(46, 57%, 52%, 0.5);
 	--wrong-attempts-text: hsla(354, 72%, 48%, 0.15);
@@ -47,21 +47,28 @@
 	--wrong-text: hsl(353, 100%, 72%);
 	--success-text-dark: hsl(134, 72%, 38%);
 	--semi-transparent: hsla(0, 0%, 100%, 0.4);
-	--modal-bg: hsla(240, 43%, 7%, 0.9);
+	--modal-bg: hsla(240, 43%, 7%, 0.8);
 	--black-shadow: hsla(0, 0%, 0%, 1);
 	--black-shadow-light: hsla(0, 0%, 0%, 0.2);
+	--white-shadow-light: hsla(0, 0%, 100%, 0.1);
 	--autocomplete-bg: hsla(240, 30%, 15%, 0.95);
 	--gold-border: hsla(48, 100%, 50%, 0.3);
 	--gold-border-focus: hsla(48, 100%, 50%, 1);
 	--gold-hover: hsla(48, 100%, 50%, 0.2);
 	--gold-outline: hsla(48, 100%, 50%, 0.1);
 	--gold-box-shadow: hsla(48, 100%, 50%, 0.2);
+	--tooltip-color: hsl(43, 46%, 75%);
+	--achievement-color: hsl(43, 46%, 75%);
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+html {
+	color-scheme: dark;
 }
 
 body {
@@ -94,12 +101,13 @@ body {
 }
 
 h1 {
-	font-family: "Cinzel", sans-serif;
+	font-family: "Cinzel Decorative", sans-serif;
 	text-align: center;
 	font-size: 3rem;
 	margin-bottom: 30px;
 	color: var(--gold-color);
 	text-shadow: 1px 1px 5px var(--gold-shadow);
+	text-transform: uppercase;
 }
 
 .game-box {
@@ -134,22 +142,17 @@ button {
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 }
 
-button:nth-child(2) {
+.controls button:nth-child(2) {
 	width: 200px;
 	color: var(--text-color);
 	background-color: var(--dark-red);
-
-	&:hover:not(:disabled) {
-		font-weight: lighter;
-		background-color: var(--darker-red);
-		transform: translateY(-2px);
-	}
+	outline: 1px solid transparent;
 }
 
-button:disabled {
+.controls button:disabled {
 	cursor: not-allowed;
 }
 
@@ -170,7 +173,7 @@ button:disabled {
 	border-bottom: 1px solid var(--gold-border);
 	background: transparent;
 	color: var(--text-color);
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 }
 
 .champion-input:focus {
@@ -195,7 +198,7 @@ button:disabled {
 	overflow-x: hidden;
 	transform: translateY(-10px);
 	pointer-events: none;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 }
 
 .autocomplete-box::-webkit-scrollbar {
@@ -221,7 +224,7 @@ button:disabled {
 	padding: 0.8rem;
 	width: 100%;
 	cursor: pointer;
-	transition: all 0.2s ease;
+	transition: all 0.2s;
 }
 
 .champion-option::before,
@@ -238,7 +241,6 @@ button:disabled {
 	transition: all 0.3s;
 }
 
-.champion-option:hover::before,
 .champion-option.selected::before {
 	left: -13px;
 }
@@ -254,12 +256,10 @@ button:disabled {
 	transition: all 0.2s;
 }
 
-.champion-option:hover::after,
 .champion-option.selected::after {
 	background: var(--gold-hover);
 }
 
-.champion-option:hover,
 .champion-option.selected {
 	transform: translateX(6px);
 }
@@ -271,14 +271,14 @@ button:disabled {
 	margin-bottom: 20px;
 	border-radius: 5px;
 	overflow: hidden;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 	position: relative;
 }
 
 .quote-box {
 	position: relative;
 	border-radius: 10px;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 }
 
 .quote-box.slide-out {
@@ -308,18 +308,6 @@ button:disabled {
 	width: 200px;
 }
 
-button:nth-child(1):hover:not(:disabled) {
-	color: var(--text-color) !important;
-	font-weight: lighter;
-
-	& .skip-piece:nth-child(1) {
-		transform: translate(2px, -4px) skew(-20deg);
-	}
-	& .skip-piece:nth-child(2) {
-		transform: translate(-1px, 4px) skew(-20deg);
-	}
-}
-
 .skip-pieces {
 	position: absolute;
 	left: 50.5%;
@@ -339,7 +327,7 @@ button:nth-child(1):hover:not(:disabled) {
 	width: 100%;
 	min-width: 100px;
 	height: 100%;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 	background-color: var(--gold-transparent);
 }
 
@@ -442,7 +430,7 @@ button:nth-child(1):hover:not(:disabled) {
 	opacity: 0;
 	pointer-events: none;
 	display: flex;
-	transition: all 0.5s ease;
+	transition: all 0.5s;
 }
 
 .game-over.active {
@@ -450,7 +438,8 @@ button:nth-child(1):hover:not(:disabled) {
 }
 
 .game-over-content {
-	background: var(--surface-color);
+	background-color: var(--modal-bg);
+	outline: 1px solid var(--gold-border);
 	text-align: center;
 	padding: 2rem;
 	border-radius: 12px;
@@ -458,15 +447,16 @@ button:nth-child(1):hover:not(:disabled) {
 	max-width: 600px;
 	transform: translateY(20px);
 	opacity: 0;
-	transition: all 0.5s ease 0.2s;
+	transition: all 0.5s 0.2s;
 }
 
 .game-over-content h2 {
-	font-family: "Cinzel", sans-serif;
+	font-family: "Cinzel Decorative", sans-serif;
 	font-size: 3rem;
 	margin-bottom: 1rem;
 	color: var(--gold-color);
 	text-shadow: 1px 1px 5px var(--gold-shadow);
+	text-transform: uppercase;
 }
 
 .game-over.active .game-over-content {
@@ -514,12 +504,7 @@ button:nth-child(1):hover:not(:disabled) {
 	text-decoration: none;
 	text-align: center;
 	margin-top: 1rem;
-	transition: all 0.3s ease;
-}
-
-#play-again-btn:hover {
-	font-weight: lighter;
-	background-color: var(--gold-color);
+	transition: all 0.3s;
 }
 
 .quote-info {
@@ -539,7 +524,7 @@ button:nth-child(1):hover:not(:disabled) {
 	border-radius: 8px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	transition: all 0.3s ease;
+	transition: all 0.3s;
 	background: var(--light-success);
 	outline: 1px solid var(--success-border);
 	outline-offset: -1px;
@@ -574,7 +559,7 @@ button:nth-child(1):hover:not(:disabled) {
 	height: 100%;
 	width: 0%;
 	background: linear-gradient(to right, var(--success-gradient-1), var(--success-gradient-2));
-	transition: width 0.5s ease-in-out;
+	transition: width 0.5s-in-out;
 	z-index: 1;
 	box-shadow: 0 0 10px var(--success-shadow);
 }
@@ -620,10 +605,6 @@ button:nth-child(1):hover:not(:disabled) {
 	color: var(--semi-transparent);
 }
 
-#answer.hidden-answer:hover {
-	color: var(--text-color);
-}
-
 .footer {
 	position: absolute;
 	width: 95%;
@@ -642,13 +623,457 @@ button:nth-child(1):hover:not(:disabled) {
 	text-shadow: 1px 1px 5px var(--gold-shadow);
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(-5px);
+.achievements-btn {
+	z-index: 100;
+	top: 40px;
+	right: 40px;
+	padding: 15px;
+	position: absolute;
+	font-size: 1.5rem;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	background-color: transparent;
+	backdrop-filter: blur(5px);
+	outline: 1px solid var(--gold-box-shadow);
+	box-shadow: inset 0 0 15px var(--gold-box-shadow), 0 0 0 var(--gold-box-shadow);
+}
+
+.credits-btn {
+	z-index: 100;
+	top: 40px;
+	left: 40px;
+	padding: 15px;
+	position: absolute;
+	font-size: 1.5rem;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	background-color: transparent;
+	backdrop-filter: blur(5px);
+	outline: 1px solid var(--gold-box-shadow);
+	box-shadow: inset 0 0 15px var(--gold-box-shadow), 0 0 0 var(--gold-box-shadow);
+}
+
+.achievements-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--modal-bg);
+	backdrop-filter: blur(8px);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+.achievements-modal h2,
+.credits-modal h2 {
+	font-family: "Cinzel Decorative", sans-serif;
+	text-align: center;
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: var(--gold-color);
+	text-shadow: 1px 1px 5px var(--gold-shadow);
+	text-transform: uppercase;
+}
+
+.achievements-modal.active,
+.credits-modal.active {
+	display: flex;
+}
+
+.achievements-content,
+.credits-content {
+	background: var(--modal-bg);
+	outline: 1px solid var(--gold-border);
+	outline-offset: 5px;
+	padding: 2rem;
+	border-radius: 12px;
+	width: 90%;
+	max-width: 600px;
+}
+
+.credits-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--modal-bg);
+	backdrop-filter: blur(8px);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+.credits-container {
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: 400px;
+}
+
+.credits-container::-webkit-scrollbar {
+	width: 4px;
+}
+.credits-container::-webkit-scrollbar-thumb {
+	background: var(--gold-border);
+	border-radius: 10px;
+}
+.credits-container::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.achievements-content {
+	background: var(--modal-bg);
+	outline: 1px solid var(--gold-border);
+	outline-offset: 5px;
+	padding: 2rem;
+	border-radius: 12px;
+	width: 90%;
+	max-width: 600px;
+}
+
+#achievements-container {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 400px;
+}
+
+.achievements-grid {
+	columns: 200px 2;
+	width: 100%;
+}
+
+#achievements-container::-webkit-scrollbar {
+	width: 4px;
+}
+#achievements-container::-webkit-scrollbar-thumb {
+	background: var(--gold-border);
+	border-radius: 10px;
+}
+#achievements-container::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.achievement-item {
+	padding: 1rem;
+	border-radius: 8px;
+	overflow: hidden;
+	opacity: 0.2;
+	position: relative;
+
+	&:not(:first-child) {
+		margin: 1rem 0;
 	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+}
+
+.achievement-item h3 {
+	font-family: "Cinzel", sans-serif;
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+	color: var(--achievement-color);
+	text-shadow: 1px 1px 2px var(--black-shadow);
+}
+
+.achievement-item p {
+	font-family: "Forum", sans-serif;
+	font-size: 1rem;
+	color: var(--text-color);
+	text-shadow: 1px 1px 10px var(--gold-shadow);
+}
+
+.achievement-item img {
+	z-index: -1;
+	position: absolute;
+	right: -15px;
+	bottom: -10px;
+	filter: invert(1) blur(2px) brightness(1);
+	opacity: 0.3;
+	width: 100px;
+	transform: rotate(-20deg);
+}
+
+.achievement-item.unlocked {
+	opacity: 1;
+	z-index: 1;
+}
+
+.achievement-item.unlocked::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	z-index: -1;
+	background: linear-gradient(45deg, var(--success-gradient-1) 20%, var(--surface-color) 70%);
+	filter: blur(20px);
+}
+
+.achievement-toast-notification .toast-content {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+.achievement-toast-notification .toast-content span {
+	font-size: 2rem;
+}
+
+.achievement-toast-notification .toast-text h3 {
+	margin: 0;
+	font-size: 1.1rem;
+	font-family: "Cinzel", sans-serif;
+	color: var(--text-color);
+}
+
+.achievement-toast-notification .toast-text p {
+	margin: 5px 0 0;
+	font-size: 1rem;
+	opacity: 0.9;
+	font-family: "Forum", sans-serif;
+	color: var(--text-color);
+}
+
+.achievements-tabs {
+	display: flex;
+	margin-bottom: 20px;
+	border-bottom: 1px solid var(--white-shadow-light);
+}
+
+.achievements-tabs .tab {
+	font-family: "Cinzel", sans-serif;
+	background: transparent;
+	width: 50%;
+	border: none;
+	color: var(--semi-transparent);
+	font-size: 16px;
+	padding: 10px 20px;
+	cursor: pointer;
+	position: relative;
+	font-weight: 800;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	transition: all 0.3s;
+}
+
+.achievements-tabs .tab.active {
+	color: var(--text-color);
+	font-weight: lighter;
+}
+
+.achievements-tabs .tab.active:after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background: var(--tooltip-color);
+	border-radius: 3px 3px 0 0;
+}
+
+.champions-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+	gap: 5px;
+	max-height: 400px;
+	overflow-y: auto;
+	position: relative;
+	justify-items: center;
+	padding-right: 1px;
+}
+
+.champions-grid::-webkit-scrollbar {
+	width: 4px;
+}
+
+.champions-grid::-webkit-scrollbar-thumb {
+	background: var(--gold-border);
+	border-radius: 10px;
+}
+.champions-grid::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.champion-wrapper {
+	position: relative;
+	width: 70px;
+	height: 70px;
+}
+
+.champion-icon {
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: transform 0.3s, filter 0.3s;
+	position: relative;
+	background-color: var(--background-color);
+}
+
+.champion-icon img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: scale(1.1);
+	object-fit: cover;
+	transition: transform 0.3s;
+	pointer-events: none;
+}
+
+.champion-icon.locked {
+	background-color: rgba(0, 0, 0, 0.7);
+	filter: blur(2px) grayscale(100%);
+	box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.question-mark {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 28px;
+	font-weight: bold;
+	pointer-events: none;
+}
+
+.champion-tooltip {
+	position: fixed;
+	padding: 15px;
+	background: rgba(0, 0, 0, 0.95);
+	border: 1px solid rgba(255, 196, 0, 0.5);
+	border-radius: 6px;
+	width: 220px;
+	max-height: 180px; /* Limitando a altura máxima */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+	z-index: 1000;
+	text-align: center;
+	color: #fff;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+	pointer-events: none;
+	transform: translateY(-10px);
+}
+
+.champion-tooltip h4 {
+	margin: 0 0 10px;
+	color: var(--tooltip-color);
+	font-family: "Cinzel", sans-serif;
+	text-shadow: 1px 1px 5px var(--gold-shadow), 0 0 20px var(--gold-shadow-light);
+	font-style: italic;
+	font-weight: 400;
+	font-size: 1rem;
+	text-wrap: pretty;
+}
+
+.champion-tooltip p {
+	font-size: 0.9rem;
+	font-family: "Forum", sans-serif;
+}
+
+.champion-tooltip small {
+	display: block;
+	margin-top: 8px;
+	font-size: 11px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.champion-fallback-text {
+	font-size: 0.9rem;
+	font-family: "Forum", sans-serif;
+	opacity: 0.6;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.champion-tooltip.active {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.champion-tooltip::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -8px;
+	border-width: 8px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.95) transparent transparent transparent;
+}
+
+.close-modal {
+	width: 100%;
+	background-color: var(--achievement-color);
+	padding: 10px;
+	color: var(--surface-color);
+	outline: 1px solid transparent;
+	outline-offset: 5px;
+	transform: translateY(20px);
+	transition: all 0.6s;
+}
+
+.modal-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.reset-btn {
+	background-color: var(--dark-red);
+	color: var(--text-color);
+	border: none;
+	border-radius: 8px;
+	padding: 10px 15px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.reset-btn:hover {
+	background-color: var(--darker-red);
+}
+
+.credits {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 10px 0;
+}
+
+.credits a.credit-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 6px;
+	padding: 8px 12px;
+	color: var(--text-color);
+	text-decoration: none;
+	font-family: "Forum", sans-serif;
+	font-size: 1.1rem;
+	transition: all 0.3s;
+}
+
+.credits a.credit-item:hover {
+	background-color: var(--gold-hover);
+	color: var(--gold-color);
+}
+
+.credit-icon {
+	width: 40px;
+	object-fit: contain;
+	border-radius: 4px;
+	filter: invert(1) brightness(0.8);
 }

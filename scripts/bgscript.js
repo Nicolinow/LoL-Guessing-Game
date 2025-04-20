@@ -88,6 +88,7 @@
 		"Amumu",
 		"Anivia",
 		"Annie",
+		"Ambessa",
 		"Aphelios",
 		"Ashe",
 		"AurelionSol",
@@ -254,7 +255,7 @@
 		tempCanvas.height = originalCanvas.height;
 
 		tempCtx.drawImage(originalCanvas, 0, 0);
-		tempCtx.fillStyle = "rgba(35, 209, 96, 0.1)";
+		tempCtx.fillStyle = "rgba(35, 209, 96, 0.2)";
 		tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
 
 		tempCtx.strokeStyle = "rgba(35, 209, 96, 0.8)";
@@ -353,22 +354,6 @@
 			animate();
 		}
 	}
-
-	shuffledChampions.forEach((champ) => {
-		const img = new Image();
-		img.crossOrigin = "Anonymous";
-		img.src = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champ}_0.jpg`;
-		img.onload = () => {
-			images[champ] = processImage(img);
-			loaded++;
-			checkAllProcessed();
-		};
-		img.onerror = () => {
-			images[champ] = fallbackImage;
-			failed++;
-			checkAllProcessed();
-		};
-	});
 
 	function loadImages() {
 		loaded = 0;
