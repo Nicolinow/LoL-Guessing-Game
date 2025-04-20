@@ -103,6 +103,7 @@
 		"Aphelios",
 		"Ashe",
 		"AurelionSol",
+		"Aurora",
 		"Azir",
 		"Bard",
 		"Belveth",

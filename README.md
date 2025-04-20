@@ -11,7 +11,7 @@ Teste seus conhecimentos de League of Legends! Neste jogo, seu desafio é descob
 
 ## Conteúdo
 
-Atualmente, o jogo utiliza frases retiradas do site oficial do League of Legends e, em alguns casos, da Fandom, priorizando as falas de movimento ao sair da base. Estão presentes todos os 168 campeões lançados até abril de 2025 (exceto Aurora). Novas frases, funcionalidades e mecânicas poderão ser adicionadas no futuro.
+Atualmente, o jogo utiliza frases retiradas do site oficial do League of Legends e, em alguns casos, da Fandom, priorizando as falas de movimento ao sair da base. Estão presentes todos os 168 campeões lançados até abril de 2025. Novas frases, funcionalidades e mecânicas poderão ser adicionadas no futuro.
 
 Este é um aplicativo totalmente client-side, ou seja, todo o processamento acontece no seu próprio navegador. Não é necessário instalar nada ou criar contas, e nenhuma informação é enviada para servidores externos. Basta abrir o jogo e jogar literalmente.
 
